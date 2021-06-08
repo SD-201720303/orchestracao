@@ -1,0 +1,45 @@
+version: "3"
+
+services: 
+    client: 
+        build: ../client
+        command: npm start 
+        ports: 
+            - "3000:3000"
+        volumes:
+            - ../usr/app/client 
+        
+    server: 
+        build: ../server
+        command: npm start 
+        ports: 
+            - "3001:3001"
+        volumes:
+            - ../usr/app/server 
+        
+            
+    nameserver: 
+        build: ../nameserver
+        command: npm start 
+        ports: 
+            - "3002:3002"
+        volumes:
+            - ../usr/app/nameserver 
+        
+
+    resourcemanager: 
+        build: ../resourcemanager
+        command: npm start 
+        ports: 
+            - "3003:3003"
+        volumes:
+            - ../usr/app/resourcemanager
+      
+            
+    mongo:
+        image: mongo
+        container_name: db
+        restart: always
+        ports:
+           - "27018:27017"
+    
